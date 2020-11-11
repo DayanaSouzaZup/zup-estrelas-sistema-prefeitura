@@ -12,7 +12,7 @@ import br.com.zup.estrelas.sistemprefeitura.dto.AlteraSecretariaDTO;
 import br.com.zup.estrelas.sistemprefeitura.dto.MensagemDTO;
 
 @Service
-public class SecretariaService implements ISercretariaService {
+public class SecretariaService implements ISecretariaService {
 
 	private static final String SECRETARIA_ALTERADA_COM_SUCESSO = "Peça alterada com sucesso.";
 	private static final String SECRETARIA_REMOVIDA_COM_SUCESSO = "Peça removida com sucesso!";
@@ -22,7 +22,6 @@ public class SecretariaService implements ISercretariaService {
 
 	@Autowired
 	SecretariaRepository secretariaRepository;
-	private Object alteraSecretariaDTO;
 
 	public MensagemDTO adicionaSecretaria(SecretariaEntity secretaria) {
 

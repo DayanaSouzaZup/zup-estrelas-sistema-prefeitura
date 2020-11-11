@@ -6,7 +6,7 @@ import br.com.zup.estrelas.sistemaprefeitura.entity.SecretariaEntity;
 import br.com.zup.estrelas.sistemprefeitura.dto.AlteraSecretariaDTO;
 import br.com.zup.estrelas.sistemprefeitura.dto.MensagemDTO;
 
-public interface ISercretariaService {
+public interface ISecretariaService {
 
 	public MensagemDTO adicionaSecretaria(SecretariaEntity secretaria);
 
