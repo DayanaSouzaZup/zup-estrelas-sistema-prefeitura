@@ -35,12 +35,12 @@ public class SecretariaService implements ISercretariaService {
 		return new MensagemDTO(CADASTRO_REALIZADO_COM_SUCESSO);
 	}
 
-	public SecretariaEntity buscaSecretaria(long idSecretaria) {
+	public SecretariaEntity buscaSecretaria(Long idSecretaria) {
 
 		return secretariaRepository.findById(idSecretaria).orElse(null);
 	}
 
-	public List<SecretariaEntity> listaSecretarias() {
+	public List<SecretariaEntity> listSecretarias() {
 		return (List<SecretariaEntity>) secretariaRepository.findAll();
 	}
 
@@ -71,9 +71,10 @@ public class SecretariaService implements ISercretariaService {
 
 			secretariaRepository.save(secretariaAlterada);
 			return new MensagemDTO(SECRETARIA_ALTERADA_COM_SUCESSO);
-			
+
 		}
-		
+
 		return new MensagemDTO(SECRETARIA_INEXISTENTE);
 	}
+
 }
