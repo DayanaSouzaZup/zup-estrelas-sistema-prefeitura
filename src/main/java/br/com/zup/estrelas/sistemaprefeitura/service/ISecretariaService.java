@@ -16,6 +16,6 @@ public interface ISecretariaService {
 
 	public MensagemDTO removeSecretaria(Long idSecretaria);
 
-	public MensagemDTO alteraSecretaria(Long idSecretaria, AlteraSecretariaDTO peca);
+	public MensagemDTO alteraSecretaria(Long idSecretaria, AlteraSecretariaDTO secretaria);
 
 }

@@ -19,7 +19,7 @@ import br.com.zup.estrelas.sistemprefeitura.dto.AlteraSecretariaDTO;
 import br.com.zup.estrelas.sistemprefeitura.dto.MensagemDTO;
 
 @RestController
-@RequestMapping("/secretaria")
+@RequestMapping("/secretarias")
 public class SecretariaController {
 
 	@Autowired

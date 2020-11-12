@@ -14,11 +14,11 @@ import br.com.zup.estrelas.sistemprefeitura.dto.MensagemDTO;
 @Service
 public class SecretariaService implements ISecretariaService {
 
-	private static final String SECRETARIA_ALTERADA_COM_SUCESSO = "Peça alterada com sucesso.";
-	private static final String SECRETARIA_REMOVIDA_COM_SUCESSO = "Peça removida com sucesso!";
-	private static final String SECRETARIA_JA_CADASTRADA = "O cadastro não ocorreu, peça já está cadastrada";
+	private static final String SECRETARIA_ALTERADA_COM_SUCESSO = "Secretaria alterada com sucesso.";
+	private static final String SECRETARIA_REMOVIDA_COM_SUCESSO = "Secretaria removida com sucesso!";
+	private static final String SECRETARIA_JA_CADASTRADA = "O cadastro não ocorreu, Secretaria já cadastrada";
 	private static final String CADASTRO_REALIZADO_COM_SUCESSO = "Cadastro realizado com sucesso.";
-	private static final String SECRETARIA_INEXISTENTE = "Peça inexistente.";
+	private static final String SECRETARIA_INEXISTENTE = "Secretaria inexistente.";
 
 	@Autowired
 	SecretariaRepository secretariaRepository;
@@ -29,7 +29,7 @@ public class SecretariaService implements ISecretariaService {
 			return new MensagemDTO(SECRETARIA_JA_CADASTRADA);
 
 		}
-
+		
 		secretariaRepository.save(secretaria);
 		return new MensagemDTO(CADASTRO_REALIZADO_COM_SUCESSO);
 	}

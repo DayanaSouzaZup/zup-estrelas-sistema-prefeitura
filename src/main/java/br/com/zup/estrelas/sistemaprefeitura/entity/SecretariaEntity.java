@@ -16,12 +16,19 @@ public class SecretariaEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idSecretaria;
+	
 	private String area;
+	
 	private Double orcamentoProjetos;
+	
 	private Double orcamentoFolha;
+	
 	private String telefone;
+	
 	private String endereco;
+	
 	private String site;
+	
 	private String email;
 	
 	@OneToMany(mappedBy="idFuncionario")

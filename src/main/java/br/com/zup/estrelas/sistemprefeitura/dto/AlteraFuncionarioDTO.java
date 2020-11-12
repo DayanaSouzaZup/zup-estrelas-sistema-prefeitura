@@ -1,38 +1,22 @@
-package br.com.zup.estrelas.sistemaprefeitura.entity;
+package br.com.zup.estrelas.sistemprefeitura.dto;
 
 import java.time.LocalDate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+public class AlteraFuncionarioDTO {
 
-@Entity
-@Table(name = "funcionario")
-public class FuncionarioEntity {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idFuncionario;
-	
+
 	private String nome;
-	
+
 	private String cpf;
-	
+
 	private Double salario;
-	
+
 	private String funcao;
-	
+
 	private Boolean concursado;
-	
+
 	private LocalDate dataAdmissao;
-	
-	@ManyToOne
-    @JoinColumn(name="idSecretaria", nullable=false)
-	private SecretariaEntity secretaria;
 
 	public Long getIdFuncionario() {
 		return idFuncionario;
@@ -90,11 +74,4 @@ public class FuncionarioEntity {
 		this.dataAdmissao = dataAdmissao;
 	}
 
-	public SecretariaEntity getSecretaria() {
-		return secretaria;
-	}
-
-	public void setSecretaria(SecretariaEntity secretaria) {
-		this.secretaria = secretaria;
-	}
 }

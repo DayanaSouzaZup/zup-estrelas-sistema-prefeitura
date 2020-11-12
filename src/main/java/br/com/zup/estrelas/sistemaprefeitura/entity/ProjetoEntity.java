@@ -19,10 +19,15 @@ public class ProjetoEntity {
 	private Long idProjeto;
 
 	private String nome;
+	
 	private String descricao;
+	
 	private Double custo;
+	
 	private LocalDate dataInicio;
+	
 	private LocalDate dataEntrega;
+	
 	private Boolean concluido;
 	
 	@ManyToOne
