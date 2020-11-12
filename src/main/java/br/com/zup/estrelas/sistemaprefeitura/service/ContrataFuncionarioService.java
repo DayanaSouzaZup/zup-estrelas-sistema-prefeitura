@@ -19,6 +19,7 @@ public class ContrataFuncionarioService implements IContrataFuncionarioService{
 	@Override
 	public MensagemDTO realizaContratacao(ContrataFuncionarioDTO contrataFuncionario) {
 		return null;
+		
 	}
 
 }

@@ -4,15 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Service;
 
-import br.com.zup.estrelas.sistemaprefeitura.entity.FuncionarioEntity;
 import br.com.zup.estrelas.sistemaprefeitura.entity.ProjetoEntity;
 import br.com.zup.estrelas.sistemaprefeitura.repository.ProjetoRepository;
-import br.com.zup.estrelas.sistemprefeitura.dto.AlteraFuncionarioDTO;
 import br.com.zup.estrelas.sistemprefeitura.dto.AlteraProjetoDTO;
 import br.com.zup.estrelas.sistemprefeitura.dto.MensagemDTO;
 
+@Service
 public class ProjetoService implements IProjetoService {
 
 	private static final String PROJETO_ALTERADO_COM_SUCESSO = "Projeto alterado com sucesso.";

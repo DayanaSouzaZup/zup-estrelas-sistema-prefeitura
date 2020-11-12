@@ -25,13 +25,15 @@ public class SecretariaService implements ISecretariaService {
 
 	public MensagemDTO adicionaSecretaria(SecretariaEntity secretaria) {
 
-		if (secretariaRepository.existsById(secretaria.getIdSecretaria())) {
+		if (secretaria.getIdSecretaria() != null && secretariaRepository.existsById(secretaria.getIdSecretaria())) {
 			return new MensagemDTO(SECRETARIA_JA_CADASTRADA);
 
 		}
 		
-		secretariaRepository.save(secretaria);
+			secretariaRepository.save(secretaria);			
+		
 		return new MensagemDTO(CADASTRO_REALIZADO_COM_SUCESSO);
+		
 	}
 
 	public SecretariaEntity buscaSecretaria(Long idSecretaria) {
