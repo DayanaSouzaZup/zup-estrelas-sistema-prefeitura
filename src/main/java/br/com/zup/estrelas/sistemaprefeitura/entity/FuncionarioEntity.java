@@ -3,6 +3,7 @@ package br.com.zup.estrelas.sistemaprefeitura.entity;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,8 +31,8 @@ public class FuncionarioEntity {
 	
 	private LocalDate dataAdmissao;
 	
-	@ManyToOne
-    @JoinColumn(name="idSecretaria", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idSecretaria", nullable = false)
 	private SecretariaEntity secretaria;
 
 	public Long getIdFuncionario() {

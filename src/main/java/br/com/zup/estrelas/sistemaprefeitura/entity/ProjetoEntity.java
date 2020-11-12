@@ -2,6 +2,7 @@ package br.com.zup.estrelas.sistemaprefeitura.entity;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,11 +18,14 @@ public class ProjetoEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idProjeto;
-
+	
+	@Column(nullable = false)
 	private String nome;
 	
+	@Column(nullable = false)
 	private String descricao;
 	
+	@Column(nullable = false)
 	private Double custo;
 	
 	private LocalDate dataInicio;

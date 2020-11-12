@@ -19,21 +19,22 @@ public class SecretariaService implements ISecretariaService {
 	private static final String SECRETARIA_JA_CADASTRADA = "O cadastro não ocorreu, Secretaria já cadastrada";
 	private static final String CADASTRO_REALIZADO_COM_SUCESSO = "Cadastro realizado com sucesso.";
 	private static final String SECRETARIA_INEXISTENTE = "Secretaria inexistente.";
+	private static final String SECRETARIA_NAO_DEVE_CONTER_ID = "Secretaria não deve contar ID";
 
 	@Autowired
 	SecretariaRepository secretariaRepository;
 
 	public MensagemDTO adicionaSecretaria(SecretariaEntity secretaria) {
 
-		if (secretaria.getIdSecretaria() != null && secretariaRepository.existsById(secretaria.getIdSecretaria())) {
-			return new MensagemDTO(SECRETARIA_JA_CADASTRADA);
+		if (secretaria.getIdSecretaria() != null) {
 
+			return new MensagemDTO(SECRETARIA_NAO_DEVE_CONTER_ID);
 		}
-		
-			secretariaRepository.save(secretaria);			
-		
+
+		secretariaRepository.save(secretaria);
+
 		return new MensagemDTO(CADASTRO_REALIZADO_COM_SUCESSO);
-		
+
 	}
 
 	public SecretariaEntity buscaSecretaria(Long idSecretaria) {
