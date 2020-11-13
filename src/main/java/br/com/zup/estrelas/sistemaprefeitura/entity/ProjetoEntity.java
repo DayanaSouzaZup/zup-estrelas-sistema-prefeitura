@@ -10,9 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
-@Table(name = "projeto")
+@Table(name = "projetos")
 public class ProjetoEntity {
 
 	@Id
@@ -34,9 +35,20 @@ public class ProjetoEntity {
 
 	private Boolean concluido;
 
+	@Transient
+	private Long idSecretaria;
+
 	@ManyToOne
 	@JoinColumn(name = "idSecretaria", nullable = false)
 	private SecretariaEntity secretaria;
+
+	public Long getIdSecretaria() {
+		return idSecretaria;
+	}
+
+	public void setIdSecretaria(Long idSecretaria) {
+		this.idSecretaria = idSecretaria;
+	}
 
 	public Long getIdProjeto() {
 		return idProjeto;

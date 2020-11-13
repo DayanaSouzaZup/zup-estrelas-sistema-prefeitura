@@ -4,10 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SecretariaService {
+public class ProjetoServiceTests {
 
 	@Test
 	void contextLoads() {
 	}
-
 }

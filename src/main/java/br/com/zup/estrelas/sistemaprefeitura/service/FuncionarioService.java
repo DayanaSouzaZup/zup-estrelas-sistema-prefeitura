@@ -18,7 +18,6 @@ public class FuncionarioService implements IFuncionarioService {
 
 	private static final String FUNCIONARIO_ALTERADO_COM_SUCESSO = "Funcionário alterado com sucesso.";
 	private static final String FUNCIONARIO_REMOVIDO_COM_SUCESSO = "Funcionário removido com sucesso!";
-	private static final String FUNCIONARIO_JA_CADASTRADO = "O cadastro não ocorreu, funcionário já cadastrado";
 	private static final String FUNCIONARIO_CADASTRADO_COM_SUCESSO = "Funcionário cadastrado com sucesso.";
 	private static final String FUNCIONARIO_INEXISTENTE = "Funcionário inexistente.";
 	private static final String FUNCIONARIO_SEM_SECRETARIA = "Funcionário sem secretaria";
@@ -41,17 +40,19 @@ public class FuncionarioService implements IFuncionarioService {
 			return new MensagemDTO(FUNCIONARIO_NAO_DEVE_POSSUIR_ID);
 		}
 
-		if (funcionario.getSecretaria() == null && funcionario.getSecretaria().getIdSecretaria() == null) {
+		if (funcionario.getSecretaria() == null && funcionario.getIdSecretaria() == null) {
 			return new MensagemDTO(FUNCIONARIO_SEM_SECRETARIA);
 		}
 
-		Optional<SecretariaEntity> secretariaOptional = secretariaRepository
-				.findById(funcionario.getSecretaria().getIdSecretaria());
+		Optional<SecretariaEntity> secretariaOptional = secretariaRepository.findById(funcionario.getIdSecretaria());
 		SecretariaEntity secretaria = secretariaOptional.get();
-
+		
 		if (secretaria == null) {
 			return new MensagemDTO(SECRETARIA_INEXISTENTE);
 		}
+		
+		funcionario.setSecretaria(secretaria);
+
 
 		if (funcionario.getSalario() < 0) {
 			return new MensagemDTO(SALARIO_INFERIOR_ZERO);
