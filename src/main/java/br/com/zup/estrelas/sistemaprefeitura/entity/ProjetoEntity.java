@@ -18,25 +18,25 @@ public class ProjetoEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idProjeto;
-	
+
 	@Column(nullable = false)
 	private String nome;
-	
+
 	@Column(nullable = false)
 	private String descricao;
-	
+
 	@Column(nullable = false)
 	private Double custo;
-	
+
 	private LocalDate dataInicio;
-	
+
 	private LocalDate dataEntrega;
-	
+
 	private Boolean concluido;
-	
+
 	@ManyToOne
-    @JoinColumn(name="idSecretaria", nullable=false)
-	private SecretariaEntity idSecretaria;
+	@JoinColumn(name = "idSecretaria", nullable = false)
+	private SecretariaEntity secretaria;
 
 	public Long getIdProjeto() {
 		return idProjeto;
@@ -94,11 +94,11 @@ public class ProjetoEntity {
 		this.concluido = concluido;
 	}
 
-	public SecretariaEntity getIdSecretaria() {
-		return idSecretaria;
+	public SecretariaEntity getSecretaria() {
+		return secretaria;
 	}
 
-	public void setIdSecretaria(SecretariaEntity idSecretaria) {
-		this.idSecretaria = idSecretaria;
+	public void setSecretaria(SecretariaEntity secretaria) {
+		this.secretaria = secretaria;
 	}
 }

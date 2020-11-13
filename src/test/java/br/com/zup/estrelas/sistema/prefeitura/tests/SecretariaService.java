@@ -1,10 +1,10 @@
-package com.example.demo;
+package br.com.zup.estrelas.sistema.prefeitura.tests;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoApplicationTests {
+class SecretariaService {
 
 	@Test
 	void contextLoads() {

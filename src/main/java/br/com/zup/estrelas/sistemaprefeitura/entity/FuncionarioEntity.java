@@ -14,25 +14,25 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "funcionario")
 public class FuncionarioEntity {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idFuncionario;
-	
+
 	private String nome;
-	
+
 	private String cpf;
-	
+
 	private Double salario;
-	
+
 	private String funcao;
-	
+
 	private Boolean concursado;
-	
+
 	private LocalDate dataAdmissao;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idSecretaria", nullable = false)
+
+	@ManyToOne
+	@JoinColumn(name = "idSecretaria", nullable = false)
 	private SecretariaEntity secretaria;
 
 	public Long getIdFuncionario() {

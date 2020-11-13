@@ -19,10 +19,10 @@ public class FuncionarioService implements IFuncionarioService {
 	private static final String FUNCIONARIO_ALTERADO_COM_SUCESSO = "Funcionário alterado com sucesso.";
 	private static final String FUNCIONARIO_REMOVIDO_COM_SUCESSO = "Funcionário removido com sucesso!";
 	private static final String FUNCIONARIO_JA_CADASTRADO = "O cadastro não ocorreu, funcionário já cadastrado";
-	private static final String CADASTRO_REALIZADO_COM_SUCESSO = "Cadastro realizado com sucesso.";
+	private static final String FUNCIONARIO_CADASTRADO_COM_SUCESSO = "Funcionário cadastrado com sucesso.";
 	private static final String FUNCIONARIO_INEXISTENTE = "Funcionário inexistente.";
 	private static final String FUNCIONARIO_SEM_SECRETARIA = "Funcionário sem secretaria";
-	private static final String SECRETARIA_NAO_EXISTE = "Secretaria não existe";
+	private static final String SECRETARIA_INEXISTENTE = "Secretaria inexistente";
 	private static final String NAO_HÁ_ORCAMENTO_PARA_ESSE_FUNCIONARIO = "Não há orçamento para esse funcionário";
 	private static final String SALARIO_INFERIOR_ZERO = "Salário inferior a zero";
 	private static final String ALTERACAO_REALIZADA_COM_SUCESSO = "Alteração de secretaria realizada com sucesso";
@@ -37,9 +37,8 @@ public class FuncionarioService implements IFuncionarioService {
 
 	public MensagemDTO adicionaFuncionario(FuncionarioEntity funcionario) {
 
-		if (funcionario.getIdFuncionario()!= null) {
+		if (funcionario.getIdFuncionario() != null) {
 			return new MensagemDTO(FUNCIONARIO_NAO_DEVE_POSSUIR_ID);
-
 		}
 
 		if (funcionario.getSecretaria() == null && funcionario.getSecretaria().getIdSecretaria() == null) {
@@ -51,7 +50,7 @@ public class FuncionarioService implements IFuncionarioService {
 		SecretariaEntity secretaria = secretariaOptional.get();
 
 		if (secretaria == null) {
-			return new MensagemDTO(SECRETARIA_NAO_EXISTE);
+			return new MensagemDTO(SECRETARIA_INEXISTENTE);
 		}
 
 		if (funcionario.getSalario() < 0) {
@@ -67,7 +66,7 @@ public class FuncionarioService implements IFuncionarioService {
 		secretariaRepository.save(secretaria);
 
 		funcionarioRepository.save(funcionario);
-		return new MensagemDTO(CADASTRO_REALIZADO_COM_SUCESSO);
+		return new MensagemDTO(FUNCIONARIO_CADASTRADO_COM_SUCESSO);
 
 	}
 
@@ -89,7 +88,7 @@ public class FuncionarioService implements IFuncionarioService {
 		SecretariaEntity secretariaNova = secretariaNovaOptional.get();
 
 		if (secretariaNova == null) {
-			return new MensagemDTO(SECRETARIA_NAO_EXISTE);
+			return new MensagemDTO(SECRETARIA_INEXISTENTE);
 		}
 
 		Optional<SecretariaEntity> secretariaAntigaOptional = secretariaRepository
