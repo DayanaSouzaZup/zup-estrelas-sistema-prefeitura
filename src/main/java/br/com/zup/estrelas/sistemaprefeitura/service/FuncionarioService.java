@@ -46,13 +46,12 @@ public class FuncionarioService implements IFuncionarioService {
 
 		Optional<SecretariaEntity> secretariaOptional = secretariaRepository.findById(funcionario.getIdSecretaria());
 		SecretariaEntity secretaria = secretariaOptional.get();
-		
+
 		if (secretaria == null) {
 			return new MensagemDTO(SECRETARIA_INEXISTENTE);
 		}
-		
-		funcionario.setSecretaria(secretaria);
 
+		funcionario.setSecretaria(secretaria);
 
 		if (funcionario.getSalario() < 0) {
 			return new MensagemDTO(SALARIO_INFERIOR_ZERO);
@@ -63,8 +62,6 @@ public class FuncionarioService implements IFuncionarioService {
 		}
 
 		secretaria.setOrcamentoFolha(secretaria.getOrcamentoFolha() - funcionario.getSalario());
-
-		secretariaRepository.save(secretaria);
 
 		funcionarioRepository.save(funcionario);
 		return new MensagemDTO(FUNCIONARIO_CADASTRADO_COM_SUCESSO);
@@ -144,6 +141,7 @@ public class FuncionarioService implements IFuncionarioService {
 			secretaria.setOrcamentoFolha(secretaria.getOrcamentoFolha() + funcionario.getSalario());
 
 			funcionarioRepository.deleteById(idFuncionario);
+			
 			return new MensagemDTO(FUNCIONARIO_REMOVIDO_COM_SUCESSO);
 		}
 
@@ -167,6 +165,7 @@ public class FuncionarioService implements IFuncionarioService {
 			funcionarioAlterado.setDataAdmissao(alteraFuncionarioDTO.getDataAdmissao());
 
 			funcionarioRepository.save(funcionarioAlterado);
+			
 			return new MensagemDTO(FUNCIONARIO_ALTERADO_COM_SUCESSO);
 
 		}

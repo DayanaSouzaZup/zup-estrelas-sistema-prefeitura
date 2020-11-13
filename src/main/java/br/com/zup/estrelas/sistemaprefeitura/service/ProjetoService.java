@@ -44,7 +44,7 @@ public class ProjetoService implements IProjetoService {
 			return new MensagemDTO(PROJETO_NAO_DEVE_POSSUIR_ID);
 		}
 		
-		if (projeto.getSecretaria() == null && projeto.getSecretaria().getIdSecretaria() == null) {
+		if (projeto.getSecretaria() == null && projeto.getIdSecretaria() == null) {
 			return new MensagemDTO(PROJETO_SEM_SECRETARIA);
 		}
 
@@ -77,7 +77,7 @@ public class ProjetoService implements IProjetoService {
 
 		projeto.setDataInicio(LocalDate.now());
 
-		secretariaRepository.save(secretaria);
+		//secretariaRepository.save(secretaria);
 
 		projetoRepository.save(projeto);
 		return new MensagemDTO(PROJETO_CADASTRADO_COM_SUCESSO);
