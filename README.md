@@ -5,21 +5,21 @@ Esse projeto tem o objetivo de ilustrar um Sistema de Prefeitura, nele são abor
 
 1 - Registro de:
 * Secretária:
-  - Cadastro;   
-  - Consulta por ID da Secretaria;
-  - Deleta por ID Secretaria;
-  - Altera ID Secretaria.
+  ° Cadastro;   
+  ° Consulta por ID da Secretaria;
+  ° Deleta por ID Secretaria;
+  ° Altera ID Secretaria.
 
 * Funcionário:
- - Cadastro;   
- - Consulta por ID do Funcionário;
- - Deleta por ID do Funcionário;
- - Altera ID Funcionário.
+  ° Cadastro;   
+  ° Consulta por ID do Funcionário;
+  ° Deleta por ID do Funcionário;
+  ° Altera ID Funcionário.
  
  * Projeto:
- - Cadastro;   
- - Consulta por "Descrição";
- - Altera.
+  ° Cadastro;   
+  ° Consulta por "Descrição";
+  ° Altera.
  
 2 - Registro de:
 * Alteração de orçamento com entrada e saída de funcionário;
