@@ -31,10 +31,10 @@ public class SecretariaEntity {
 	
 	private String email;
 	
-	@OneToMany(mappedBy="idFuncionario")
+	@OneToMany(mappedBy = "idFuncionario")
 	private List<FuncionarioEntity> funcionarios;
 	
-	@OneToMany(mappedBy="idProjeto")
+	@OneToMany(mappedBy = "idProjeto")
 	private List<ProjetoEntity> projetos;
 
 	public Long getIdSecretaria() {

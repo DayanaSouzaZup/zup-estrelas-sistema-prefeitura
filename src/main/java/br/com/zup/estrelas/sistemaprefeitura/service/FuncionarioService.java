@@ -28,7 +28,6 @@ public class FuncionarioService implements IFuncionarioService {
 	private static final String SALARIO_NAO_PODE_SER_REDUZIDO = "Salário não pode ser reduzido";
 	private static final String ID_JÁ_UTILIZADO = "Já existe um funcionãrio com esse ID";
 
-
 	@Autowired
 	FuncionarioRepository funcionarioRepository;
 
@@ -38,7 +37,7 @@ public class FuncionarioService implements IFuncionarioService {
 	public MensagemDTO adicionaFuncionario(FuncionarioEntity funcionario) {
 
 		if (funcionario.getIdFuncionario() != null) {
-			
+
 			if (funcionarioRepository.existsById(funcionario.getIdSecretaria())) {
 				return new MensagemDTO(ID_JÁ_UTILIZADO);
 			}
@@ -134,7 +133,7 @@ public class FuncionarioService implements IFuncionarioService {
 
 	public MensagemDTO removeFuncionario(Long idFuncionario) {
 
-		if (funcionarioRepository.existsById(idFuncionario)) {
+		if (idFuncionario != null && funcionarioRepository.existsById(idFuncionario)) {
 
 			Optional<SecretariaEntity> secretariaOptional = secretariaRepository.findById(idFuncionario);
 			SecretariaEntity secretaria = secretariaOptional.get();
@@ -145,7 +144,7 @@ public class FuncionarioService implements IFuncionarioService {
 			secretaria.setOrcamentoFolha(secretaria.getOrcamentoFolha() + funcionario.getSalario());
 
 			funcionarioRepository.deleteById(idFuncionario);
-			
+
 			return new MensagemDTO(FUNCIONARIO_REMOVIDO_COM_SUCESSO);
 		}
 
@@ -169,7 +168,7 @@ public class FuncionarioService implements IFuncionarioService {
 			funcionarioAlterado.setDataAdmissao(alteraFuncionarioDTO.getDataAdmissao());
 
 			funcionarioRepository.save(funcionarioAlterado);
-			
+
 			return new MensagemDTO(FUNCIONARIO_ALTERADO_COM_SUCESSO);
 
 		}
