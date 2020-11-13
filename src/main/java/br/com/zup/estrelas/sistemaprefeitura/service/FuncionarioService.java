@@ -26,7 +26,8 @@ public class FuncionarioService implements IFuncionarioService {
 	private static final String SALARIO_INFERIOR_ZERO = "Salário inferior a zero";
 	private static final String ALTERACAO_REALIZADA_COM_SUCESSO = "Alteração de secretaria realizada com sucesso";
 	private static final String SALARIO_NAO_PODE_SER_REDUZIDO = "Salário não pode ser reduzido";
-	private static final String FUNCIONARIO_NAO_DEVE_POSSUIR_ID = "Funcionário não deve possuir ID";
+	private static final String ID_JÁ_UTILIZADO = "Já existe um funcionãrio com esse ID";
+
 
 	@Autowired
 	FuncionarioRepository funcionarioRepository;
@@ -37,7 +38,10 @@ public class FuncionarioService implements IFuncionarioService {
 	public MensagemDTO adicionaFuncionario(FuncionarioEntity funcionario) {
 
 		if (funcionario.getIdFuncionario() != null) {
-			return new MensagemDTO(FUNCIONARIO_NAO_DEVE_POSSUIR_ID);
+			
+			if (funcionarioRepository.existsById(funcionario.getIdSecretaria())) {
+				return new MensagemDTO(ID_JÁ_UTILIZADO);
+			}
 		}
 
 		if (funcionario.getSecretaria() == null && funcionario.getIdSecretaria() == null) {

@@ -30,8 +30,8 @@ public class ProjetoService implements IProjetoService {
 	private static final String DESCRICAO_ALTERADA_COM_SUCESSO = "Descrição alterada com sucesso";
 	private static final String PROJETO_CONCLUIDO_COM_SUCESSO = "Projeto concluído com sucesso";
 	private static final String DATA_ENTREGA_NAO_PODE_SER_MENOR_DATA_INICIO = "Data de entrega não pode ser menos que a data de início";
-	private static final String PROJETO_NAO_DEVE_POSSUIR_ID = "Projeto não deve possuir ID";
-	
+	private static final String ID_JÁ_UTILIZADO = "Já existe um projeto com esse ID";
+
 	@Autowired
 	ProjetoRepository projetoRepository;
 
@@ -41,9 +41,12 @@ public class ProjetoService implements IProjetoService {
 	public MensagemDTO adicionaProjeto(ProjetoEntity projeto) {
 
 		if (projeto.getIdProjeto() != null) {
-			return new MensagemDTO(PROJETO_NAO_DEVE_POSSUIR_ID);
+
+			if (projetoRepository.existsById(projeto.getIdSecretaria())) {
+				return new MensagemDTO(ID_JÁ_UTILIZADO);
+			}
 		}
-		
+
 		if (projeto.getSecretaria() == null && projeto.getIdSecretaria() == null) {
 			return new MensagemDTO(PROJETO_SEM_SECRETARIA);
 		}
@@ -76,8 +79,6 @@ public class ProjetoService implements IProjetoService {
 		}
 
 		projeto.setDataInicio(LocalDate.now());
-
-		//secretariaRepository.save(secretaria);
 
 		projetoRepository.save(projeto);
 		return new MensagemDTO(PROJETO_CADASTRADO_COM_SUCESSO);

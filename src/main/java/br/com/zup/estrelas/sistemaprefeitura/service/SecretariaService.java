@@ -16,10 +16,9 @@ public class SecretariaService implements ISecretariaService {
 
 	private static final String SECRETARIA_ALTERADA_COM_SUCESSO = "Secretaria alterada com sucesso.";
 	private static final String SECRETARIA_REMOVIDA_COM_SUCESSO = "Secretaria removida com sucesso!";
-	private static final String SECRETARIA_JA_CADASTRADA = "O cadastro não ocorreu, Secretaria já cadastrada";
 	private static final String CADASTRO_REALIZADO_COM_SUCESSO = "Cadastro realizado com sucesso.";
 	private static final String SECRETARIA_INEXISTENTE = "Secretaria inexistente.";
-	private static final String SECRETARIA_NAO_DEVE_CONTER_ID = "Secretaria não deve contar ID";
+	private static final String ID_JÁ_UTILIZADO = "Já existe uma secretaria com esse ID";
 
 	@Autowired
 	SecretariaRepository secretariaRepository;
@@ -28,7 +27,10 @@ public class SecretariaService implements ISecretariaService {
 
 		if (secretaria.getIdSecretaria() != null) {
 
-			return new MensagemDTO(SECRETARIA_NAO_DEVE_CONTER_ID);
+			if (secretariaRepository.existsById(secretaria.getIdSecretaria())) {
+				return new MensagemDTO(ID_JÁ_UTILIZADO);
+			}
+
 		}
 
 		secretariaRepository.save(secretaria);
