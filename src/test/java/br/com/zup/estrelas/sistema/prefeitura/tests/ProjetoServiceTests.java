@@ -29,6 +29,8 @@ public class ProjetoServiceTests {
 	ProjetoService projetoService;
 	
 	@Test
+	// FIXME: O comportamento do repository não foi mocado,
+	// causando um NPE.
 	public void deveAlterarUmProjeto() {
 		
 		ProjetoEntity projeto = new ProjetoEntity();
@@ -45,6 +47,8 @@ public class ProjetoServiceTests {
 	}
 	
 	@Test
+	// FIXME: O comportamento do repository não foi mocado,
+    // causando um NPE.
 	public void naoDeveAlterarUmProjeto() {
 
 		ProjetoEntity peca = new ProjetoEntity();

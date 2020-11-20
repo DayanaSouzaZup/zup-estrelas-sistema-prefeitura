@@ -47,5 +47,9 @@ public class ProjetoController {
 
 		return projetoService.alteraProjeto(idProjeto, projeto);
 	}
+	
+	//FIXME: Faltou o endpoint de finalizar.
 
+	
+	
 }

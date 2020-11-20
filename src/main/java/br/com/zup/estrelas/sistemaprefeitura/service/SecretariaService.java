@@ -25,6 +25,10 @@ public class SecretariaService implements ISecretariaService {
 
 	public MensagemDTO adicionaSecretaria(SecretariaEntity secretaria) {
 
+	    // FIXME: Day, aqui nós deveríamos criar um DTO como primeiro ponto de barreira
+	    // para que o ID não seja nem possível de ser passado na requisição.
+	    // Depois disso, a validação proposta na regra de negócio era a de que fosse validada a
+	    // área, para que não hajam duas secretarias para a mesma área.
 		if (secretaria.getIdSecretaria() != null) {
 
 			if (secretariaRepository.existsById(secretaria.getIdSecretaria())) {

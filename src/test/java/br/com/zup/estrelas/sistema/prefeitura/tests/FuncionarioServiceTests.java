@@ -29,6 +29,10 @@ public class FuncionarioServiceTests {
 	FuncionarioService funcionarioService;
 
 	@Test
+	// FIXME: A lógica está invertida nesse cenário e no de baixo.
+	// Quando você diz que o existes deve retornar falso, é por que 
+	// o funcionário não será removido e você comparou com a mensagem pra
+	// quando o fluxo é removido e vice-versa
 	public void deveRemoverFuncionario() {
 
 		FuncionarioEntity funcionario = new FuncionarioEntity();
@@ -59,6 +63,7 @@ public class FuncionarioServiceTests {
 	}
 	
 	@Test
+	// FIXME: Faltou mocar o secretariaRepository.
 	public void deveAdicionarUmFuncionario() {
 
 		FuncionarioEntity funcionario = new FuncionarioEntity();

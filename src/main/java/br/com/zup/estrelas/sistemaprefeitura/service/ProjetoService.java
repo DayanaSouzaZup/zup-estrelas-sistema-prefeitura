@@ -38,8 +38,11 @@ public class ProjetoService implements IProjetoService {
 	@Autowired
 	SecretariaRepository secretariaRepository;
 
+	// FIXME: Day, este método está bem grande, dele é possível extrair alguns 
+	// métodos privados (lembrar das funções) para deixar o código mais limpo.
 	public MensagemDTO adicionaProjeto(ProjetoEntity projeto) {
 
+	    // FIXME: Na criação com um DTO essa validação não é necessária.
 		if (projeto.getIdProjeto() != null) {
 
 			if (projetoRepository.existsById(projeto.getIdSecretaria())) {
@@ -64,7 +67,6 @@ public class ProjetoService implements IProjetoService {
 			return new MensagemDTO(VALOR_DE_CUSTO_MENOR_QUE_ZERO);
 		}
 		if (projeto.getCusto() > secretaria.getOrcamentoProjetos()) {
-
 			return new MensagemDTO(NAO_HÁ_ORCAMENTO_PARA_ESSE_PROJETO);
 		}
 
@@ -78,6 +80,7 @@ public class ProjetoService implements IProjetoService {
 			return new MensagemDTO(PROJETO_AINDA_NAO_CONCLUIDO);
 		}
 
+		// FIXME: Aqui é importante setar o concluido como false também.
 		projeto.setDataInicio(LocalDate.now());
 
 		projetoRepository.save(projeto);
@@ -114,6 +117,7 @@ public class ProjetoService implements IProjetoService {
 		return new MensagemDTO(PROJETO_INEXISTENTE);
 	}
 
+	// FIXME: Esse método não é usado.
 	public MensagemDTO alteraProjetoSecretaria(Long idProjeto, String descricao) {
 
 		if (descricao == null || descricao.isEmpty()) {
@@ -121,6 +125,9 @@ public class ProjetoService implements IProjetoService {
 		}
 
 		Optional<ProjetoEntity> projetoOptional = projetoRepository.findById(idProjeto);
+		
+		// FIXME: Antes de fazer um get temos que verificar se ele existe usando o 
+		// método isPresent().
 		ProjetoEntity projeto = projetoOptional.get();
 
 		if (projeto == null) {
@@ -136,13 +143,16 @@ public class ProjetoService implements IProjetoService {
 
 	}
 
+	// FIXME: Faltou criar um endpoint para utilizar este método.
 	public MensagemDTO projetoConcluido(Long idProjeto, LocalDate dataEntega) {
 
 		Optional<ProjetoEntity> projetoOptional = projetoRepository.findById(idProjeto);
+		
+		// FIXME: Antes de fazer um get temos que verificar se ele existe usando o 
+		// método isPresent().
 		ProjetoEntity projeto = projetoOptional.get();
 
 		if (projeto == null) {
-
 			return new MensagemDTO(PROJETO_INEXISTENTE);
 		}
 
@@ -151,6 +161,7 @@ public class ProjetoService implements IProjetoService {
 			return new MensagemDTO(DATA_ENTREGA_NAO_PODE_SER_MENOR_DATA_INICIO);
 		}
 
+		//FIXME: Faltou setar a data de entrega.
 		projeto.setConcluido(true);
 
 		return new MensagemDTO(PROJETO_CONCLUIDO_COM_SUCESSO);
