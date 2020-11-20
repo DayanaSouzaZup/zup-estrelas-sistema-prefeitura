@@ -34,8 +34,11 @@ public class FuncionarioService implements IFuncionarioService {
 	@Autowired
 	SecretariaRepository secretariaRepository;
 
+	// FIXME: Era importante aqui usar um DTO.
 	public MensagemDTO adicionaFuncionario(FuncionarioEntity funcionario) {
 
+	    // FIXME: Este método também está grande, dava pra criar métodos privados
+	    // para fazer as validações também.
 		if (funcionario.getIdFuncionario() != null) {
 
 			if (funcionarioRepository.existsById(funcionario.getIdSecretaria())) {
@@ -86,14 +89,20 @@ public class FuncionarioService implements IFuncionarioService {
 
 		Optional<SecretariaEntity> secretariaNovaOptional = secretariaRepository
 				.findById(funcionario.getSecretaria().getIdSecretaria());
+
+		// FIXME: Utilizar o isPresent sempre antes de fazer um get.
 		SecretariaEntity secretariaNova = secretariaNovaOptional.get();
 
+		// FIXME: Essa validação não funciona pois se vc ter um get no optional empty 
+		// estoura a exceção NoSuchElementException e não chega aqui nesse trecho de código
+		// (vale pra todos que eu comentei sobre o isPresent).
 		if (secretariaNova == null) {
 			return new MensagemDTO(SECRETARIA_INEXISTENTE);
 		}
 
 		Optional<SecretariaEntity> secretariaAntigaOptional = secretariaRepository
 				.findById(funcionario.getSecretaria().getIdSecretaria());
+		// FIXME: Utilizar o isPresent sempre antes de fazer um get.
 		SecretariaEntity secretariaAntiga = secretariaAntigaOptional.get();
 
 		if (funcionario.getSalario() < 0) {
@@ -136,9 +145,11 @@ public class FuncionarioService implements IFuncionarioService {
 		if (idFuncionario != null && funcionarioRepository.existsById(idFuncionario)) {
 
 			Optional<SecretariaEntity> secretariaOptional = secretariaRepository.findById(idFuncionario);
+			// FIXME: Utilizar o isPresent sempre antes de fazer um get.
 			SecretariaEntity secretaria = secretariaOptional.get();
 
 			Optional<FuncionarioEntity> funcionarioOptional = funcionarioRepository.findById(idFuncionario);
+			// FIXME: Utilizar o isPresent sempre antes de fazer um get.
 			FuncionarioEntity funcionario = funcionarioOptional.get();
 
 			secretaria.setOrcamentoFolha(secretaria.getOrcamentoFolha() + funcionario.getSalario());

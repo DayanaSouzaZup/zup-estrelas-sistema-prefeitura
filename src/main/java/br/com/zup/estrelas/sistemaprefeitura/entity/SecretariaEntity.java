@@ -34,6 +34,10 @@ public class SecretariaEntity {
 	@OneToMany(mappedBy = "idFuncionario")
 	private List<FuncionarioEntity> funcionarios;
 	
+	// FIXME: Day, existe um problema aqui. Quando você lista ou consulta uma secretaria
+	// ela tem um projeto dentro, que tem uma secretaria dentro, que tem um projeto dentro
+	// e isso gera um loop infinito na exibição. Existem estratégias para fazer isso, procure
+	// por esse problema (loop infinito em json quando há entidades filhas).
 	@OneToMany(mappedBy = "idProjeto")
 	private List<ProjetoEntity> projetos;
 
